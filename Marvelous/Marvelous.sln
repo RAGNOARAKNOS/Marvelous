@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic", "Basic\Basic.csproj", "{7D5D695F-A5E6-49CE-9823-8BD42C3DC8B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelRabbit", "MarvelRabbit\MarvelRabbit.csproj", "{D11C1594-2F64-4E0F-9D05-C7A81CBF5719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7D5D695F-A5E6-49CE-9823-8BD42C3DC8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D5D695F-A5E6-49CE-9823-8BD42C3DC8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D5D695F-A5E6-49CE-9823-8BD42C3DC8B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D11C1594-2F64-4E0F-9D05-C7A81CBF5719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D11C1594-2F64-4E0F-9D05-C7A81CBF5719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D11C1594-2F64-4E0F-9D05-C7A81CBF5719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D11C1594-2F64-4E0F-9D05-C7A81CBF5719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

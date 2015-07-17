@@ -20,11 +20,11 @@ namespace Basic
             public string copyright { get; set; }
             public string attributionText { get; set; }
             public string attributionHTML { get; set; }
-            public Data data { get; set; }
+            public CharacterData data { get; set; }
             public string etag { get; set; }
         }
 
-        public class Data
+        public class CharacterData
         {
             public string offset { get; set; }
             public string limit { get; set; }
@@ -165,12 +165,13 @@ namespace Basic
             Debug.WriteLine(call);
 
             HttpResponseMessage response = await client.GetAsync(call.ToString());
-            Console.ReadKey();
             Console.Write(response.ToString());
             Console.ReadKey();
 
             Rootobject returns = await response.Content.ReadAsAsync<Rootobject>();
+            Console.WriteLine(returns.data.results[0].name);
             Console.ReadKey();
+
         }
     }
 }
