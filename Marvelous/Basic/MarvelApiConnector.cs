@@ -46,10 +46,10 @@ namespace Basic
 
         private async Task<string> GenerateHash()
         {
-            return await Task.Run(() => this.GenerateHashTest());
+            return await Task.Run(() => this.GenerateHashString());
         }
 
-        private string GenerateHashTest()
+        private string GenerateHashString()
         {
             // Create the sum key
             string sumString = this.GenerateTimespan() + this.PrivateKey + this.PublicKey;
@@ -61,7 +61,7 @@ namespace Basic
             byte[] hash = md5.ComputeHash(stringMap);
 
             StringBuilder hexHash = new StringBuilder();
-            for (int i = 0; i < hexHash.Length; i++)
+            for (int i = 0; i < hash.Length; i++)
             {
                 // Format the string into hexadecimal
                 hexHash.Append(hash[i].ToString("x2"));
@@ -75,9 +75,31 @@ namespace Basic
             return ((int)(DateTime.Now.ToUniversalTime() - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
         }
 
-        private string GenerateRequestString()
+        private string GenerateRequestString(int responseLimit)
         {
+            StringBuilder call = new StringBuilder();
+            call.AppendFormat(@"/v1/public/comics?");
+            call.AppendFormat(@"ts={0}&", this.GenerateTimespan());
+            call.AppendFormat(@"apikey={0}&", this.PublicKey);
+            call.AppendFormat(@"hash={0}&", this.GenerateHashString());
+            call.AppendFormat(@"limit={0}", responseLimit);
 
+            return call.ToString();
+        }
+
+        public async Task<HttpResponseMessage> GetApiResponse()
+        {
+            HttpResponseMessage responseMessage = await this.apiClient.GetAsync(GenerateRequestString(5));
+            return responseMessage;
+        }
+
+        public async Task<Rootobject> GetAPI()
+        {
+            HttpResponseMessage test = await GetApiResponse();
+
+            Rootobject returns = await test.Content.ReadAsAsync<Rootobject>();
+
+            return returns;
         }
     }
 }

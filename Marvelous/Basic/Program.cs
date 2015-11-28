@@ -119,10 +119,23 @@ namespace Basic
 
         static void Main(string[] args)
         {
+            MarvelApiConnector conn = new MarvelApiConnector(
+                @"92e6098644d89d4eb82d611f6ea649e29b385aff",
+                @"944be256913a7a96f2315c76918ec609",
+                "http://gateway.marvel.com");
+
+            Basic.Rootobject myRoot = ((conn.GetAPI()).GetAwaiter()).GetResult();
+            Console.WriteLine(myRoot.data.results[0].title);
+
+            Console.ReadKey();
+
+            Console.ReadKey();
+
             RunAsync().Wait();
         }
         static async Task RunAsync()
         {
+            
             HttpClient client = new HttpClient();
 
             client.BaseAddress = new Uri("http://gateway.marvel.com");
@@ -171,7 +184,7 @@ namespace Basic
             Rootobject returns = await response.Content.ReadAsAsync<Rootobject>();
             Console.WriteLine(returns.data.results[0].name);
             Console.ReadKey();
-
+           
         }
     }
 }
