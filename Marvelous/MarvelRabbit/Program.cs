@@ -45,7 +45,7 @@ namespace MarvelRabbit
                 channel.QueueDeclare(queue: "hello", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
                 var consumer = new QueueingBasicConsumer(channel);
-                channel.BasicConsume(queue: "hello", noAck: true, consumer: consumer);
+                channel.BasicConsume(queue: "hello", consumer: consumer);
 
                 Console.WriteLine(" [*] Waiting for messages. To exit press CTRL+C");
                 while (true)

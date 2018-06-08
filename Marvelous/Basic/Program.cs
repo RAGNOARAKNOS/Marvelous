@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
@@ -127,11 +128,8 @@ namespace Basic
             Basic.Rootobject myRoot = ((conn.GetAPI()).GetAwaiter()).GetResult();
             Console.WriteLine(myRoot.data.results[0].title);
 
-            Console.ReadKey();
-
-            Console.ReadKey();
-
             RunAsync().Wait();
+            Console.ReadKey();
         }
         static async Task RunAsync()
         {
@@ -184,7 +182,10 @@ namespace Basic
             Rootobject returns = await response.Content.ReadAsAsync<Rootobject>();
             Console.WriteLine(returns.data.results[0].name);
             Console.ReadKey();
-           
+
+            WebClient lbtest = new WebClient();
+            var test = lbtest.DownloadString(client.BaseAddress.ToString()+"/"+call.ToString());
+            Console.WriteLine(test);
         }
     }
 }
